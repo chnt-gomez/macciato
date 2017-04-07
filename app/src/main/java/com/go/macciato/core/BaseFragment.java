@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by MAV1GA on 07/04/2017.
  */
@@ -30,6 +32,8 @@ public class BaseFragment extends Fragment {
     }
 
     protected void init(){
-
+        if (fragmentView != null){
+            ButterKnife.bind(this, fragmentView);
+        }
     }
 }
