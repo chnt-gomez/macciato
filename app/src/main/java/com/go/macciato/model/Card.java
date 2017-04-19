@@ -1,7 +1,12 @@
 package com.go.macciato.model;
 
 
+import android.util.Log;
+
 import com.orm.SugarRecord;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 /**
  * Created by MAV1GA on 17/04/2017.
@@ -16,6 +21,11 @@ public class Card{
     private float totalDebt;
     private float currentDebt;
 
+    public Card (float debt, int payDay, int endPayday){
+        this.totalDebt = debt;
+        this.payStart = payDay;
+        this.payEnd = endPayday;
+    }
 
 
     public String getCardName() {
@@ -34,7 +44,7 @@ public class Card{
         this.annualCost = annualCost;
     }
 
-    public int getPayStart() {
+    public long getPayStart() {
         return payStart;
     }
 
@@ -42,7 +52,7 @@ public class Card{
         this.payStart = payStart;
     }
 
-    public int getPayEnd() {
+    public long getPayEnd() {
         return payEnd;
     }
 
@@ -67,6 +77,21 @@ public class Card{
     }
 
     public String getCurrentDebtMask(){
-        return String.valueOf(currentDebt);
+        return String.valueOf(totalDebt);
     }
+
+    public int getCurrentProgress() {
+        int days = DateTime.now().dayOfMonth().get();
+        Log.d("Today is: ", ""+days);
+        Log.d("Last Day is: ", ""+payEnd);
+        Log.d("Progress should be: ", String.valueOf(days-payStart));
+        return days - payStart;
+    }
+
+    public int getMaxProgress(){
+        int n = payEnd - payStart;
+        Log.d("Max should be: ", ""+n);
+        return n;
+    }
+
 }

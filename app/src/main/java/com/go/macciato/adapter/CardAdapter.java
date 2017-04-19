@@ -35,6 +35,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public void onBindViewHolder(CardViewHolder holder, int position) {
         Card card = items.get(position);
         holder.setDebt(card.getCurrentDebtMask());
+        holder.setMaxProgress(card.getMaxProgress());
+        holder.setProgress(card.getCurrentProgress());
     }
 
     @Override
@@ -42,22 +44,28 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         return items.size();
     }
 
+    public void mark(int adapterPosition) {
+        items.remove(adapterPosition);
+    }
+
     class CardViewHolder extends RecyclerView.ViewHolder{
 
         private ProgressBar progressBar;
         private TextView txtCardDebt;
 
-        public CardViewHolder(View itemView) {
+        CardViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.pb_remaining);
             txtCardDebt = (TextView) itemView.findViewById(R.id.txt_card_debt);
         }
 
-        public void setProgress(int progress){
+        void setProgress(int progress){
             progressBar.setProgress(progress);
         }
-
-        public void setDebt(String debt){
+        void setMaxProgress(int progress) {
+            progressBar.setMax(progress);
+        }
+        void setDebt(String debt){
             txtCardDebt.setText(debt);
         }
     }
