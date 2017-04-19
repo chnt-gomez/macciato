@@ -1,8 +1,11 @@
 package com.go.macciato.module.home;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -49,6 +52,15 @@ public class HomeFragment extends BaseFragment{
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(adapter);
+
+        //Divider decoration
+        DividerItemDecoration horizontalDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        Drawable horizontalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.horizontal_divider);
+        horizontalDecoration.setDrawable(horizontalDivider);
+        mRecyclerView.addItemDecoration(horizontalDecoration);
+
+        //Swipe listener
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -59,8 +71,11 @@ public class HomeFragment extends BaseFragment{
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 adapter.mark(viewHolder.getAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getLayoutPosition());
+                showSnackBar("Done!");
             }
         });
+
+
         helper.attachToRecyclerView(mRecyclerView);
     }
 
