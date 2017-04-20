@@ -34,7 +34,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
         Card card = items.get(position);
-        holder.setDebt(card.getCurrentDebtMask());
         holder.setMaxProgress(card.getMaxProgress());
         holder.setProgress(card.getCurrentProgress());
     }

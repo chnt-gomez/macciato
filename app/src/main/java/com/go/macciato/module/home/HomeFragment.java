@@ -1,7 +1,10 @@
 package com.go.macciato.module.home;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.go.macciato.R;
@@ -22,18 +27,21 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindBitmap;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by MAV1GA on 07/04/2017.
  */
 
-public class HomeFragment extends BaseFragment{
+public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
 
     @BindView(R.id.cards_list)
     RecyclerView mRecyclerView;
 
     private CardAdapter adapter;
+    private HomePresenterRequiredOps homePresenter;
 
     public static HomeFragment newInstance(){
         HomeFragment fragment = new HomeFragment();
@@ -46,7 +54,6 @@ public class HomeFragment extends BaseFragment{
     @Override
     protected void init() {
         super.init();
-        adapter = new CardAdapter(fakeData());
         mRecyclerView = (RecyclerView)findView(R.id.cards_list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -79,14 +86,17 @@ public class HomeFragment extends BaseFragment{
         helper.attachToRecyclerView(mRecyclerView);
     }
 
-    @Deprecated
-    private List<Card> fakeData(){
-        List<Card> list = new ArrayList<>();
-        list.add(new Card(3580.30f,15,31));
-        list.add(new Card(433.52f,21,29));
-        list.add(new Card(3580.30f,10,20));
-        list.add(new Card(3580.30f,1,16));
-        list.add(new Card(3580.30f,6,18));
-        return list;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        homePresenter = (HomePresenterRequiredOps)context;
+    }
+
+    @OnClick (R.id.btn_add)
+    public void onAddClick(){
+        Card card = new Card("Card test");
+        Log.d("Card created: ", card.getCardName());
+        homePresenter.addCard(card);
+
     }
 }

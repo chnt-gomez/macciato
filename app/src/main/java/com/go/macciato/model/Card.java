@@ -1,32 +1,28 @@
 package com.go.macciato.model;
 
-
 import android.util.Log;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 
 /**
  * Created by MAV1GA on 17/04/2017.
  */
 
-public class Card{
+public class Card extends SugarRecord{
 
     private String cardName;
     private float annualCost;
     private int payStart;
     private int payEnd;
-    private float totalDebt;
-    private float currentDebt;
+    private int tintColor;
+    private int status;
 
-    public Card (float debt, int payDay, int endPayday){
-        this.totalDebt = debt;
-        this.payStart = payDay;
-        this.payEnd = endPayday;
+    public Card (String cardName){
+        this.cardName = cardName;
     }
-
 
     public String getCardName() {
         return cardName;
@@ -58,26 +54,6 @@ public class Card{
 
     public void setPayEnd(int payEnd) {
         this.payEnd = payEnd;
-    }
-
-    public float getTotalDebt() {
-        return totalDebt;
-    }
-
-    public void setTotalDebt(float totalDebt) {
-        this.totalDebt = totalDebt;
-    }
-
-    public float getCurrentDebt() {
-        return currentDebt;
-    }
-
-    public void setCurrentDebt(float curenDebt) {
-        this.currentDebt = curenDebt;
-    }
-
-    public String getCurrentDebtMask(){
-        return String.valueOf(totalDebt);
     }
 
     public int getCurrentProgress() {
