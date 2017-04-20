@@ -34,21 +34,27 @@ public class MacciatoEngine implements ModelOps{
 
     @Override
     public void addCard(Card card) {
-        if (validateCard(card)){
+        if (validateCard(card)) {
+            card.setStatus(Card.DISABLED);
             card.save();
             presenter.onOperationSuccessful(card.getId());
-        }else{
-            presenter.onOperationError(R.string.generic_error);
         }
+
     }
 
     private boolean validateCard(Card card) {
+
+        //Check for duplicate name
+        if (Card.find(Card.class, "card_name = ?", card.getCardName() ).size() >= 1){
+            presenter.onOperationError(R.string.generic_error);
+            return false;
+        }
         return true;
     }
 
     @Override
     public List<Card> getAllCards() {
-        return null;
+        return Card.listAll(Card.class);
     }
 
     @Override

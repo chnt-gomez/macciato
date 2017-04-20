@@ -18,7 +18,30 @@ public class Card extends SugarRecord{
     private int payStart;
     private int payEnd;
     private int tintColor;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getTintColor() {
+        return tintColor;
+    }
+
+    public void setTintColor(int tintColor) {
+        this.tintColor = tintColor;
+    }
+
     private int status;
+
+    @Ignore
+    public static final int DISABLED = 0;
+
+    @Ignore
+    public static final int ENABLED = 1;
 
     public Card (String cardName){
         this.cardName = cardName;

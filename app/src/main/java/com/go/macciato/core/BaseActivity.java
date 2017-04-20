@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.go.macciato.R;
+import com.go.macciato.data.MacciatoEngine;
 import com.go.macciato.data.ModelOps;
 import com.go.macciato.module.home.HomeFragment;
 
@@ -27,7 +28,9 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
     }
 
     protected void init() {
-
+        if (model == null){
+            model = MacciatoEngine.getInstance(this);
+        }
     }
 
     protected void addFragment(BaseFragment fragment, boolean addToBackStack){

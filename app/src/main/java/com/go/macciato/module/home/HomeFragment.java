@@ -1,11 +1,8 @@
 package com.go.macciato.module.home;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,20 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.go.macciato.R;
 import com.go.macciato.adapter.CardAdapter;
 import com.go.macciato.core.BaseFragment;
 import com.go.macciato.model.Card;
-
-import org.joda.time.DateTime;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindBitmap;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -50,6 +37,7 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     protected void init() {
@@ -83,6 +71,7 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
         });
 
 
+
         helper.attachToRecyclerView(mRecyclerView);
     }
 
@@ -93,10 +82,9 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
     }
 
     @OnClick (R.id.btn_add)
-    public void onAddClick(){
+    public void onBtnAddClick(){
         Card card = new Card("Card test");
         Log.d("Card created: ", card.getCardName());
         homePresenter.addCard(card);
-
     }
 }
