@@ -15,6 +15,9 @@ import com.go.macciato.R;
 import com.go.macciato.adapter.CardAdapter;
 import com.go.macciato.core.BaseFragment;
 import com.go.macciato.model.Card;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -70,7 +73,10 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
             }
         });
 
-
+        List<Card> cards = homePresenter.getAllCards();
+        for (Card c : cards){
+            Log.d("Card: ", c.getCardName());
+        }
 
         helper.attachToRecyclerView(mRecyclerView);
     }
@@ -83,8 +89,8 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
 
     @OnClick (R.id.btn_add)
     public void onBtnAddClick(){
-        Card card = new Card("Card test");
-        Log.d("Card created: ", card.getCardName());
-        homePresenter.addCard(card);
+
+        //TODO: Add CArd dialog builder.
+        homePresenter.addCard(new Card("test"));
     }
 }

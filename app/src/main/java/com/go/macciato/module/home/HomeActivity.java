@@ -20,7 +20,7 @@ public class HomeActivity extends BaseActivity implements HomePresenterRequiredO
 
     @Override
     public List<Card> getAllCards() {
-        return null;
+        return model.getAllCards();
     }
 
     @Override
