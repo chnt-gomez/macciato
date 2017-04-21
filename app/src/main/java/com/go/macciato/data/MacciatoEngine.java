@@ -1,5 +1,6 @@
 package com.go.macciato.data;
 
+import com.go.macciato.R;
 import com.go.macciato.core.RequiredPresenterOps;
 import com.go.macciato.model.CreditCard;
 
@@ -36,23 +37,22 @@ public class MacciatoEngine implements ModelOps{
     @Override
     public void addCard(CreditCard card) {
         if (validateCard(card)) {
-
             card.save();
             presenter.onOperationSuccessful(card.getId());
+        }else{
+            presenter.onOperationError(R.string.generic_error);
         }
-
     }
 
     private boolean validateCard(CreditCard card) {
-
-        //Check for duplicate name
+        //Check duplicate name
         return CreditCard.find(CreditCard.class, "card_name = ?", card.getCardName()).size() < 1;
     }
 
     @Override
     public List<CreditCard> getAllCards() {
-        //return Card.listAll(Card.class);
-        return null;
+        return CreditCard.listAll(CreditCard.class);
+
     }
 
     @Override

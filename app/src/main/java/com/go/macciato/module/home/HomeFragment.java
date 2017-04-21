@@ -77,7 +77,7 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
         List<CreditCard> cards = homePresenter.getAllCards();
         if (cards != null) {
             for (CreditCard c : cards) {
-                Log.d("Card: ", c.getId() + "");
+                Log.d("Card: ", c.getCardName());
             }
         }
 
