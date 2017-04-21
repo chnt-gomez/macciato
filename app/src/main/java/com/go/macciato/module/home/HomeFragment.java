@@ -10,11 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
-import android.view.View;
+
 import com.go.macciato.R;
 import com.go.macciato.adapter.CardAdapter;
 import com.go.macciato.core.BaseFragment;
-import com.go.macciato.model.Card;
+import com.go.macciato.dialogs.NewCreditCardDialog;
+import com.go.macciato.model.CreditCard;
 
 import java.util.List;
 
@@ -73,9 +74,11 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
             }
         });
 
-        List<Card> cards = homePresenter.getAllCards();
-        for (Card c : cards){
-            Log.d("Card: ", c.getCardName());
+        List<CreditCard> cards = homePresenter.getAllCards();
+        if (cards != null) {
+            for (CreditCard c : cards) {
+                Log.d("Card: ", c.getId() + "");
+            }
         }
 
         helper.attachToRecyclerView(mRecyclerView);
@@ -90,7 +93,12 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
     @OnClick (R.id.btn_add)
     public void onBtnAddClick(){
 
-        //TODO: Add CArd dialog builder.
-        homePresenter.addCard(new Card("test"));
+        NewCreditCardDialog.build(getContext(), R.string.new_credit_card, -1,
+                new NewCreditCardDialog.RequiredNewCreditCardOps() {
+            @Override
+            public void onNewCreditCard(CreditCard card) {
+                homePresenter.addCard(card);
+            }
+        }).show();
     }
 }

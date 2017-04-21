@@ -1,8 +1,7 @@
 package com.go.macciato.data;
 
-import com.go.macciato.R;
 import com.go.macciato.core.RequiredPresenterOps;
-import com.go.macciato.model.Card;
+import com.go.macciato.model.CreditCard;
 
 import java.util.List;
 
@@ -23,6 +22,8 @@ public class MacciatoEngine implements ModelOps{
         return instance;
     }
 
+    private MacciatoEngine(){}
+
     private void setPresenter(RequiredPresenterOps presenterOps){
         presenter = presenterOps;
     }
@@ -33,42 +34,39 @@ public class MacciatoEngine implements ModelOps{
     }
 
     @Override
-    public void addCard(Card card) {
+    public void addCard(CreditCard card) {
         if (validateCard(card)) {
-            card.setStatus(Card.DISABLED);
+
             card.save();
             presenter.onOperationSuccessful(card.getId());
         }
 
     }
 
-    private boolean validateCard(Card card) {
+    private boolean validateCard(CreditCard card) {
 
         //Check for duplicate name
-        if (Card.find(Card.class, "card_name = ?", card.getCardName() ).size() >= 1){
-            presenter.onOperationError(R.string.generic_error);
-            return false;
-        }
-        return true;
+        return CreditCard.find(CreditCard.class, "card_name = ?", card.getCardName()).size() < 1;
     }
 
     @Override
-    public List<Card> getAllCards() {
-        return Card.listAll(Card.class);
-    }
-
-    @Override
-    public List<Card> getPeriodCards() {
+    public List<CreditCard> getAllCards() {
+        //return Card.listAll(Card.class);
         return null;
     }
 
     @Override
-    public void dismissCard(Card card) {
+    public List<CreditCard> getPeriodCards() {
+        return null;
+    }
+
+    @Override
+    public void dismissCard(CreditCard card) {
 
     }
 
     @Override
-    public void payCard(Card card) {
+    public void payCard(CreditCard card) {
 
     }
 }

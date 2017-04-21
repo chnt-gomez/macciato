@@ -1,8 +1,7 @@
 package com.go.macciato.module.home;
 
-import com.go.macciato.R;
 import com.go.macciato.core.BaseActivity;
-import com.go.macciato.model.Card;
+import com.go.macciato.model.CreditCard;
 
 import java.util.List;
 
@@ -19,27 +18,27 @@ public class HomeActivity extends BaseActivity implements HomePresenterRequiredO
     }
 
     @Override
-    public List<Card> getAllCards() {
+    public List<CreditCard> getAllCards() {
         return model.getAllCards();
     }
 
     @Override
-    public List<Card> getActiveCards() {
+    public List<CreditCard> getActiveCards() {
         return null;
     }
 
     @Override
-    public List<Card> getPeriodCards() {
+    public List<CreditCard> getPeriodCards() {
         return null;
     }
 
     @Override
-    public Card getCard(long cardId) {
+    public CreditCard getCard(long cardId) {
         return null;
     }
 
     @Override
-    public Card updateCard(Card card) {
+    public CreditCard updateCard(CreditCard card) {
         return null;
     }
 
@@ -49,7 +48,7 @@ public class HomeActivity extends BaseActivity implements HomePresenterRequiredO
     }
 
     @Override
-    public void addCard(Card newCard) {
+    public void addCard(CreditCard newCard) {
         model.addCard(newCard);
     }
 }

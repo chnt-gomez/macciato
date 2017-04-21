@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.go.macciato.R;
-import com.go.macciato.model.Card;
+import com.go.macciato.model.CreditCard;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import java.util.List;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
-    private List<Card> items;
+    private List<CreditCard> items;
 
-    public CardAdapter (List<Card> items){
+    public CardAdapter (List<CreditCard> items){
         this.items = items;
     }
 
@@ -33,9 +33,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
-        Card card = items.get(position);
-        holder.setMaxProgress(card.getMaxProgress());
-        holder.setProgress(card.getCurrentProgress());
+        CreditCard card = items.get(position);
+        //holder.setMaxProgress(card.getMaxProgress());
+        //holder.setProgress(card.getCurrentProgress());
     }
 
     @Override

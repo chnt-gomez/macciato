@@ -2,4 +2,6 @@
     <string name="app_name">Go Soon</string>
     <string name="generic_error">Error!</string>
     <string name="operation_successful">Operation successful</string>
+    <string name="new_credit_card">New card</string>
+    <string name="ok">Ok</string>
 </resources>

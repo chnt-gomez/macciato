@@ -1,6 +1,6 @@
 package com.go.macciato.module.home;
 
-import com.go.macciato.model.Card;
+import com.go.macciato.model.CreditCard;
 
 import java.util.List;
 
@@ -10,18 +10,17 @@ import java.util.List;
 
 interface HomePresenterRequiredOps {
 
-    List<Card> getAllCards();
+    List<CreditCard> getAllCards();
 
-    List<Card> getActiveCards();
+    List<CreditCard> getActiveCards();
 
-    List<Card> getPeriodCards();
+    List<CreditCard> getPeriodCards();
 
-    Card getCard(long cardId);
+    CreditCard getCard(long cardId);
 
-    Card updateCard(Card card);
+    CreditCard updateCard(CreditCard card);
 
     void payCard(long cardId);
 
-    void addCard(Card newCard);
-
+    void addCard(CreditCard newCard);
 }

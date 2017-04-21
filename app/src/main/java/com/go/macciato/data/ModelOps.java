@@ -1,7 +1,7 @@
 package com.go.macciato.data;
 
 import com.go.macciato.core.RequiredPresenterOps;
-import com.go.macciato.model.Card;
+import com.go.macciato.model.CreditCard;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ public interface ModelOps {
 
     /* Card operations */
 
-    void addCard(Card card);
-    List<Card> getAllCards();
-    List<Card> getPeriodCards();
-    void dismissCard(Card card);
-    void payCard(Card card);
+    void addCard(CreditCard card);
+    List<CreditCard> getAllCards();
+    List<CreditCard> getPeriodCards();
+    void dismissCard(CreditCard card);
+    void payCard(CreditCard card);
 
 }
