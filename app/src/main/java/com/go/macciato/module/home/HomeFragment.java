@@ -9,15 +9,12 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
-
 import com.go.macciato.R;
 import com.go.macciato.adapter.CardAdapter;
 import com.go.macciato.core.BaseFragment;
 import com.go.macciato.dialogs.NewCreditCardDialog;
 import com.go.macciato.model.CreditCard;
 
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,10 +39,11 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
         return fragment;
     }
 
-
     @Override
     protected void init() {
         super.init();
+
+
         mRecyclerView = (RecyclerView)findView(R.id.cards_list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -73,15 +71,21 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
                 showSnackBar("Done!");
             }
         });
-
-        List<CreditCard> cards = homePresenter.getAllCards();
-        if (cards != null) {
-            for (CreditCard c : cards) {
-                Log.d("Card: ", c.getCardName());
-            }
-        }
-
         helper.attachToRecyclerView(mRecyclerView);
+
+        Loader cardLoader = new Loader(this);
+        cardLoader.execute();
+    }
+
+    @Override
+    public void onLoading() {
+        adapter = new CardAdapter( homePresenter.getAllCards());
+    }
+
+    @Override
+    public void onDoneLoading() {
+        super.onDoneLoading();
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override

@@ -10,5 +10,4 @@ interface RequiredViewOps {
     void onOperationSuccessful(String message, long operationId);
     void onOperationError(String message);
 
-
 }

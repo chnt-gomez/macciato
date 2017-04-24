@@ -23,4 +23,6 @@ interface HomePresenterRequiredOps {
     void payCard(long cardId);
 
     void addCard(CreditCard newCard);
+
+
 }

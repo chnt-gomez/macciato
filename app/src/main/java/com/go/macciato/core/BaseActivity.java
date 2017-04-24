@@ -2,13 +2,10 @@ package com.go.macciato.core;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-
 import com.go.macciato.R;
 import com.go.macciato.data.MacciatoEngine;
 import com.go.macciato.data.ModelOps;
-import com.go.macciato.module.home.HomeFragment;
 
 /**
  * Created by MAV1GA on 07/04/2017.
@@ -18,7 +15,6 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
 
     protected RequiredViewOps view;
     protected ModelOps model;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,4 +61,5 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
     public void onOperationSuccessful(Long operationId) {
         view.onOperationSuccessful(getString(R.string.operation_successful));
     }
+
 }

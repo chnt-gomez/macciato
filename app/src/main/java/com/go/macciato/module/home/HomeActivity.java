@@ -51,4 +51,5 @@ public class HomeActivity extends BaseActivity implements HomePresenterRequiredO
     public void addCard(CreditCard newCard) {
         model.addCard(newCard);
     }
+
 }
