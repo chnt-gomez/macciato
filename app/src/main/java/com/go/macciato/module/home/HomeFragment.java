@@ -12,9 +12,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import com.go.macciato.R;
 import com.go.macciato.adapter.CardAdapter;
 import com.go.macciato.core.BaseFragment;
+import com.go.macciato.core.OnRecyclerViewItemClick;
 import com.go.macciato.dialogs.NewCreditCardDialog;
 import com.go.macciato.model.CreditCard;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * Created by MAV1GA on 07/04/2017.
  */
 
-public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
+public class HomeFragment extends BaseFragment implements HomeViewRequiredOps, OnRecyclerViewItemClick{
 
     @BindView(R.id.cards_list)
     RecyclerView mRecyclerView;
@@ -71,13 +71,12 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
             }
         });
         helper.attachToRecyclerView(mRecyclerView);
-        Loader cardLoader = new Loader(this);
-        cardLoader.execute();
+        onReload();
     }
 
     @Override
     public void onLoading() {
-        adapter = new CardAdapter( homePresenter.getAllCards());
+        adapter = new CardAdapter( homePresenter.getAllCards(), this);
     }
 
     @Override
@@ -102,5 +101,22 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
                 homePresenter.addCard(card);
             }
         }).show();
+    }
+
+    @Override
+    protected void onReload() {
+        Loader cardLoader = new Loader(this);
+        cardLoader.execute();
+    }
+
+    @Override
+    public void onOperationSuccessful(String message) {
+        super.onOperationSuccessful(message);
+        onReload();
+    }
+
+    @Override
+    public void onClick(long itemId, int position) {
+        showSnackBar(String.valueOf(itemId));
     }
 }

@@ -1,7 +1,5 @@
 package com.go.macciato.core;
 
-
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -14,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import butterknife.ButterKnife;
 
 /**
@@ -38,6 +35,9 @@ public class BaseFragment extends Fragment implements RequiredViewOps, LoaderReq
         fragmentView = inflater.inflate(getArguments().getInt(FRAGMENT_LAYOUT), null);
         init();
         return fragmentView;
+    }
+
+    protected void onReload(){
     }
 
     protected void init(){

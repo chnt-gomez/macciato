@@ -6,13 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.go.macciato.R;
+import com.go.macciato.core.OnRecyclerViewItemClick;
 import com.go.macciato.model.CreditCard;
 import com.go.macciato.utils.CFormat;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 /**
@@ -22,9 +19,11 @@ import java.util.List;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
     private List<CreditCard> items;
+    private OnRecyclerViewItemClick callback;
 
-    public CardAdapter (List<CreditCard> items){
+    public CardAdapter (List<CreditCard> items, OnRecyclerViewItemClick callback){
         this.items = items;
+        this.callback = callback;
     }
 
     @Override
@@ -35,12 +34,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     }
 
     @Override
-    public void onBindViewHolder(CardViewHolder holder, int position) {
+    public void onBindViewHolder(final CardViewHolder holder, int position) {
         CreditCard card = items.get(position);
+        final long itemId = card.getId();
         holder.setMaxProgress(getMaxProgress(card.getPayStart(), card.getPayEnd()));
         holder.setProgress(getProgress(card.getPayStart(), card.getPayEnd()));
         holder.setCardName(card.getCardName());
         holder.setDebt(card.getCurrentDebt());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onClick(itemId, holder.getAdapterPosition());}
+        });
     }
 
     @Override
@@ -78,6 +83,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         void setCardName(String cardName){
             txtCardName.setText(cardName);
         }
+
     }
 
     private static int getProgress(int payDay, int deadline){
