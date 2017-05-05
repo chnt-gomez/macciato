@@ -27,7 +27,6 @@ public class BaseFragment extends Fragment implements RequiredViewOps, LoaderReq
     protected View fragmentView;
     protected static ProgressDialog progressInstance;
     protected PresenterOps presenter;
-
     protected View findView(int resId){
         return fragmentView.findViewById(resId);
     }

@@ -50,11 +50,30 @@ public class CreditCard extends SugarRecord {
         this.tintColor = tintColor;
     }
 
-    String cardName;
-    float annualCost;
-    int payStart;
-    int payEnd;
-    int tintColor;
+    private String cardName;
+    private float annualCost;
+    private int payStart;
+    private int payEnd;
+    private int tintColor;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public float getCurrentDebt() {
+        return currentDebt;
+    }
+
+    public void setCurrentDebt(float currentDebt) {
+        this.currentDebt = currentDebt;
+    }
+
+    private int status;
+    private float currentDebt;
 
 
 }

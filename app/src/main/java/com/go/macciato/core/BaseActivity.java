@@ -29,6 +29,10 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
         }
     }
 
+    public static boolean returnFoo(){
+        return returnFoo()&&returnFoo();
+    }
+
     protected void addFragment(BaseFragment fragment, boolean addToBackStack){
         if (addToBackStack){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, fragment)

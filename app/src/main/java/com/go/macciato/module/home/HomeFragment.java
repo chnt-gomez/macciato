@@ -15,7 +15,6 @@ import com.go.macciato.core.BaseFragment;
 import com.go.macciato.dialogs.NewCreditCardDialog;
 import com.go.macciato.model.CreditCard;
 
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -72,7 +71,6 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps{
             }
         });
         helper.attachToRecyclerView(mRecyclerView);
-
         Loader cardLoader = new Loader(this);
         cardLoader.execute();
     }
