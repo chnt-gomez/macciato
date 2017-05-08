@@ -4,4 +4,7 @@
     <string name="operation_successful">Operation successful</string>
     <string name="new_credit_card">New card</string>
     <string name="ok">Ok</string>
+    <string name="card_name">Card name</string>
+    <string name="cut_day">Cut day</string>
+    <string name="deadline">Payment deadline</string>
 </resources>
