@@ -20,5 +20,9 @@ public interface ModelOps {
     List<CreditCard> getPeriodCards();
     void dismissCard(CreditCard card);
     void payCard(CreditCard card);
+    CreditCard getCard(long cardId);
 
+    void updatePayStart(Long id, int dayOfMonth);
+
+    void updatePayEnd(Long id, int dayOfMonth);
 }

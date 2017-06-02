@@ -69,4 +69,25 @@ public class MacciatoEngine implements ModelOps{
     public void payCard(CreditCard card) {
 
     }
+
+    @Override
+    public CreditCard getCard(long cardId) {
+        return CreditCard.findById(CreditCard.class, cardId);
+    }
+
+    @Override
+    public void updatePayStart(Long id, int dayOfMonth) {
+        CreditCard card = CreditCard.findById(CreditCard.class, id);
+        card.setPayStart(dayOfMonth);
+        card.save();
+        presenter.onOperationSuccessful(-1l);
+    }
+
+    @Override
+    public void updatePayEnd(Long id, int dayOfMonth) {
+        CreditCard card = CreditCard.findById(CreditCard.class, id);
+        card.setPayStart(dayOfMonth);
+        card.save();
+        presenter.onOperationSuccessful(-1l);
+    }
 }

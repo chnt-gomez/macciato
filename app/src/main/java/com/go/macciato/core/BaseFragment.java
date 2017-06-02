@@ -33,7 +33,7 @@ public class BaseFragment extends Fragment implements RequiredViewOps, LoaderReq
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(getArguments().getInt(FRAGMENT_LAYOUT), null);
-        init();
+        initButterKnife();
         return fragmentView;
     }
 
@@ -41,10 +41,13 @@ public class BaseFragment extends Fragment implements RequiredViewOps, LoaderReq
     }
 
     protected void init(){
+
+    }
+
+    protected void initButterKnife(){
         if (fragmentView != null){
             ButterKnife.bind(this, fragmentView);
         }
-
     }
 
     protected void showSnackBar(String message){
@@ -105,7 +108,6 @@ public class BaseFragment extends Fragment implements RequiredViewOps, LoaderReq
         protected void onPreExecute() {
             super.onPreExecute();
             callback.onStartLoading();
-
         }
 
         @Override

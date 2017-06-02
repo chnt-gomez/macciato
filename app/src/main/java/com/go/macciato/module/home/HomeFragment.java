@@ -1,6 +1,7 @@
 package com.go.macciato.module.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,8 @@ import com.go.macciato.core.BaseFragment;
 import com.go.macciato.core.OnRecyclerViewItemClick;
 import com.go.macciato.dialogs.NewCreditCardDialog;
 import com.go.macciato.model.CreditCard;
+import com.go.macciato.module.config.CardConfigActivity;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -110,6 +113,12 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps, O
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
+    @Override
     public void onOperationSuccessful(String message) {
         super.onOperationSuccessful(message);
         onReload();
@@ -117,6 +126,10 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps, O
 
     @Override
     public void onClick(long itemId, int position) {
-        showSnackBar(String.valueOf(itemId));
+        Intent intent = new Intent(getContext(), CardConfigActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putLong("card_id", itemId);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

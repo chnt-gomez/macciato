@@ -16,7 +16,6 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
     protected RequiredViewOps view;
     protected ModelOps model;
 
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
@@ -27,10 +26,6 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
         if (model == null){
             model = MacciatoEngine.getInstance(this);
         }
-    }
-
-    public static boolean returnFoo(){
-        return returnFoo()&&returnFoo();
     }
 
     protected void addFragment(BaseFragment fragment, boolean addToBackStack){
@@ -65,5 +60,4 @@ public class BaseActivity extends AppCompatActivity implements RequiredPresenter
     public void onOperationSuccessful(Long operationId) {
         view.onOperationSuccessful(getString(R.string.operation_successful));
     }
-
 }
