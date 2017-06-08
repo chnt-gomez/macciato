@@ -20,4 +20,11 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="txt_indicator" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:padding">@dimen/default_margin</item>
+    </style>
+
 </resources>

@@ -8,4 +8,5 @@
     <string name="cut_day">Cut day</string>
     <string name="deadline">Payment deadline</string>
     <string name="remaining_days_to_pay">Days remaining to pay</string>
+    <string name="credit_cards">Credit cards</string>
 </resources>

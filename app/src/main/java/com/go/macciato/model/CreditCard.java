@@ -1,12 +1,26 @@
 package com.go.macciato.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
+import java.util.Locale;
 
 /**
  * Created by MAV1GA on 21/04/2017.
  */
 
 public class CreditCard extends SugarRecord {
+
+    @Ignore
+    public static int PAID = 0;
+
+    @Ignore
+    public static int RUNNING = 1;
+
+    @Ignore
+    public static int INACTIVE = 2;
+
+    @Ignore
+    public static int DELAYED = 3;
 
     public CreditCard(){super();}
 
@@ -42,6 +56,7 @@ public class CreditCard extends SugarRecord {
         this.payEnd = payEnd;
     }
 
+
     public int getTintColor() {
         return tintColor;
     }
@@ -55,6 +70,15 @@ public class CreditCard extends SugarRecord {
     private int payStart;
     private int payEnd;
     private int tintColor;
+    private float monthDebt;
+
+    public float getMonthDebt() {
+        return monthDebt;
+    }
+
+    public void setMonthDebt(float monthDebt) {
+        this.monthDebt = monthDebt;
+    }
 
     public int getStatus() {
         return status;
@@ -75,5 +99,11 @@ public class CreditCard extends SugarRecord {
     private int status;
     private float currentDebt;
 
+    public String getMonthDebtMask(){
+        return String.format(Locale.getDefault(), "$ %.2f", monthDebt);
+    }
 
+    public String getCurrentDebtMask(){
+        return String.format(Locale.getDefault(), "$ %.2f", currentDebt);
+    }
 }

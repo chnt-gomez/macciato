@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".module.config.CardConfigActivity"/>
+        <activity android:name=".module.cardlist.CardListActivity" />
 
     </application>
 

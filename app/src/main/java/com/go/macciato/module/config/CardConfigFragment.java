@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.go.macciato.R;
 import com.go.macciato.core.BaseFragment;
@@ -30,6 +31,12 @@ public class CardConfigFragment extends BaseFragment{
 
     @BindView(R.id.btn_pay_end)
     Button btnPayEnd;
+
+    @BindView(R.id.txt_total_debt)
+    TextView txtTotalDebt;
+
+    @BindView(R.id.txt_month_due)
+    TextView txtMonthDebt;
 
     private CardConfigPresenterRequiredOps cardConfigPresenter;
 
@@ -75,6 +82,7 @@ public class CardConfigFragment extends BaseFragment{
         new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                cardConfigPresenter.updatePayEnd(cardConfigPresenter.getCard().getId(), dayOfMonth);
                 btnPayEnd.setText(String.valueOf(dayOfMonth));
             }
         }, year, month, day).show();
@@ -98,6 +106,14 @@ public class CardConfigFragment extends BaseFragment{
         super.onLoading();
         CreditCard card = cardConfigPresenter.getCard();
         edtCardName.setText(card.getCardName());
+
+
+        btnPayStart.setText(card.getPayStart() == 0 ? "-" : String.valueOf(card.getPayStart()));
+        btnPayEnd.setText(card.getPayEnd() == 0 ? "-" : String.valueOf(card.getPayEnd()));
+
+        txtMonthDebt.setText(card.getMonthDebtMask());
+        txtTotalDebt.setText(card.getCurrentDebtMask());
+
     }
 
 }

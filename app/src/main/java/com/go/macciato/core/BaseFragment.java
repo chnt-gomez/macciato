@@ -8,17 +8,23 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.go.macciato.R;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by MAV1GA on 07/04/2017.
  */
 
-public class BaseFragment extends Fragment implements RequiredViewOps, LoaderRequiredOps{
+public class BaseFragment extends Fragment implements RequiredViewOps, LoaderRequiredOps, Toolbar.OnMenuItemClickListener{
 
     protected static final String FRAGMENT_LAYOUT = "fragment_layout";
     protected View fragmentView;
@@ -94,6 +100,11 @@ public class BaseFragment extends Fragment implements RequiredViewOps, LoaderReq
         }
         progressInstance.setIndeterminate(true);
         progressInstance.setCanceledOnTouchOutside(false);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
 
     protected class Loader extends AsyncTask<String, Void, Void> {

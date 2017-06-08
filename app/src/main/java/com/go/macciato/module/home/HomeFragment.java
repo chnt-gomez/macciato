@@ -9,13 +9,20 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.ProgressBar;
+
 import com.go.macciato.R;
 import com.go.macciato.adapter.CardAdapter;
 import com.go.macciato.core.BaseFragment;
 import com.go.macciato.core.OnRecyclerViewItemClick;
 import com.go.macciato.dialogs.NewCreditCardDialog;
 import com.go.macciato.model.CreditCard;
+import com.go.macciato.module.cardlist.CardListActivity;
 import com.go.macciato.module.config.CardConfigActivity;
 
 import butterknife.BindView;
@@ -44,7 +51,6 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps, O
     @Override
     protected void init() {
         super.init();
-
 
         mRecyclerView = (RecyclerView)findView(R.id.cards_list);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -78,8 +84,17 @@ public class HomeFragment extends BaseFragment implements HomeViewRequiredOps, O
     }
 
     @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.action_credit_cards){
+            startActivity(new Intent(getActivity(), CardListActivity.class));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void onLoading() {
-        adapter = new CardAdapter( homePresenter.getAllCards(), this);
+        adapter = new CardAdapter( homePresenter.getActiveCards(), this);
     }
 
     @Override
